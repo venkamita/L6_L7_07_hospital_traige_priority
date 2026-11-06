@@ -1,0 +1,12 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.18, pytest-9.1.1, pluggy-1.6.0 -- /usr/local/bin/python3
+hypothesis profile 'default'
+rootdir: /root/repo/Lab 7
+plugins: platformdirs-4.13.5, anyio-4.15.1, hypothesis-6.170.15
+collecting ... collected 3 items
+
+test_processor.py::test_parse_vitals_summary_no_crash PASSED             [ 33%]
+test_processor.py::test_compute_patient_bmi_safe PASSED                  [ 66%]
+test_processor.py::test_assign_ward_bed_safe PASSED                      [100%]
+
+============================== 3 passed in 0.79s ===============================
