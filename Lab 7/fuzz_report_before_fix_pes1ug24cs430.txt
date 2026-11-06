@@ -1,0 +1,227 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.18, pytest-9.1.1, pluggy-1.6.0
+rootdir: /root/repo/Lab 7
+plugins: platformdirs-4.13.5, anyio-4.15.1, hypothesis-6.170.15
+collected 3 items
+
+test_processor.py FFF                                                    [100%]
+
+=================================== FAILURES ===================================
+______________________ test_parse_vitals_summary_no_crash ______________________
+  + Exception Group Traceback (most recent call last):
+  |   File "/root/repo/Lab 7/test_processor.py", line 11, in test_parse_vitals_summary_no_crash
+  |     @given(st.text() | st.none())
+  |                    ^^^
+  |   File "/usr/local/lib/python3.13/site-packages/hypothesis/core.py", line 2334, in wrapped_test
+  |     raise the_error_hypothesis_found
+  | BaseExceptionGroup: Hypothesis found 3 distinct failures. (3 sub-exceptions)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/root/repo/Lab 7/test_processor.py", line 14, in test_parse_vitals_summary_no_crash
+    |     result = parse_vitals_summary(s)
+    |   File "/root/repo/Lab 7/processor.py", line 4, in parse_vitals_summary
+    |     spo2 = float(parts[1])
+    |                  ~~~~~^^^
+    | IndexError: list index out of range
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "/root/repo/Lab 7/test_processor.py", line 16, in test_parse_vitals_summary_no_crash
+    |     pytest.fail(f"parse_vitals_summary crashed on {s!r}: {type(e).__name__}: {e}")
+    |     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/lib/python3.13/site-packages/_pytest/outcomes.py", line 162, in __call__
+    |     raise Failed(msg=reason, pytrace=pytrace)
+    | Failed: parse_vitals_summary crashed on '0': IndexError: list index out of range
+    | Failing test case: test_parse_vitals_summary_no_crash(
+    |     s='0',
+    | )
+    +---------------- 2 ----------------
+    | Traceback (most recent call last):
+    |   File "/root/repo/Lab 7/test_processor.py", line 14, in test_parse_vitals_summary_no_crash
+    |     result = parse_vitals_summary(s)
+    |   File "/root/repo/Lab 7/processor.py", line 3, in parse_vitals_summary
+    |     hr = float(parts[0])
+    | ValueError: could not convert string to float: ''
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "/root/repo/Lab 7/test_processor.py", line 16, in test_parse_vitals_summary_no_crash
+    |     pytest.fail(f"parse_vitals_summary crashed on {s!r}: {type(e).__name__}: {e}")
+    |     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/lib/python3.13/site-packages/_pytest/outcomes.py", line 162, in __call__
+    |     raise Failed(msg=reason, pytrace=pytrace)
+    | Failed: parse_vitals_summary crashed on '': ValueError: could not convert string to float: ''
+    | Failing test case: test_parse_vitals_summary_no_crash(
+    |     s='',
+    | )
+    +---------------- 3 ----------------
+    | Traceback (most recent call last):
+    |   File "/root/repo/Lab 7/test_processor.py", line 14, in test_parse_vitals_summary_no_crash
+    |     result = parse_vitals_summary(s)
+    |   File "/root/repo/Lab 7/processor.py", line 2, in parse_vitals_summary
+    |     parts = vitals_csv.split(',')
+    |             ^^^^^^^^^^^^^^^^
+    | AttributeError: 'NoneType' object has no attribute 'split'
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "/root/repo/Lab 7/test_processor.py", line 16, in test_parse_vitals_summary_no_crash
+    |     pytest.fail(f"parse_vitals_summary crashed on {s!r}: {type(e).__name__}: {e}")
+    |     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/lib/python3.13/site-packages/_pytest/outcomes.py", line 162, in __call__
+    |     raise Failed(msg=reason, pytrace=pytrace)
+    | Failed: parse_vitals_summary crashed on None: AttributeError: 'NoneType' object has no attribute 'split'
+    | Failing test case: test_parse_vitals_summary_no_crash(
+    |     s=None,
+    | )
+    +------------------------------------
+________________________ test_compute_patient_bmi_safe _________________________
+  + Exception Group Traceback (most recent call last):
+  |   File "/root/repo/Lab 7/test_processor.py", line 21, in test_compute_patient_bmi_safe
+  |     @given(st.text() | st.none())
+  |                    ^^^
+  |   File "/usr/local/lib/python3.13/site-packages/hypothesis/core.py", line 2334, in wrapped_test
+  |     raise the_error_hypothesis_found
+  | BaseExceptionGroup: Hypothesis found 3 distinct failures. (3 sub-exceptions)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/root/repo/Lab 7/test_processor.py", line 24, in test_compute_patient_bmi_safe
+    |     result = compute_patient_bmi(s)
+    |   File "/root/repo/Lab 7/processor.py", line 11, in compute_patient_bmi
+    |     weight = float(w_str)
+    | ValueError: could not convert string to float: ''
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "/root/repo/Lab 7/test_processor.py", line 26, in test_compute_patient_bmi_safe
+    |     pytest.fail(f"compute_patient_bmi crashed on {s!r}: {type(e).__name__}: {e}")
+    |     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/lib/python3.13/site-packages/_pytest/outcomes.py", line 162, in __call__
+    |     raise Failed(msg=reason, pytrace=pytrace)
+    | Failed: compute_patient_bmi crashed on '/': ValueError: could not convert string to float: ''
+    | Failing test case: test_compute_patient_bmi_safe(
+    |     s='/',
+    | )
+    +---------------- 2 ----------------
+    | Traceback (most recent call last):
+    |   File "/root/repo/Lab 7/test_processor.py", line 24, in test_compute_patient_bmi_safe
+    |     result = compute_patient_bmi(s)
+    |   File "/root/repo/Lab 7/processor.py", line 10, in compute_patient_bmi
+    |     w_str, h_str = bmi_string.split('/')
+    |     ^^^^^^^^^^^^
+    | ValueError: not enough values to unpack (expected 2, got 1)
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "/root/repo/Lab 7/test_processor.py", line 26, in test_compute_patient_bmi_safe
+    |     pytest.fail(f"compute_patient_bmi crashed on {s!r}: {type(e).__name__}: {e}")
+    |     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/lib/python3.13/site-packages/_pytest/outcomes.py", line 162, in __call__
+    |     raise Failed(msg=reason, pytrace=pytrace)
+    | Failed: compute_patient_bmi crashed on '': ValueError: not enough values to unpack (expected 2, got 1)
+    | Failing test case: test_compute_patient_bmi_safe(
+    |     s='',
+    | )
+    +---------------- 3 ----------------
+    | Traceback (most recent call last):
+    |   File "/root/repo/Lab 7/test_processor.py", line 24, in test_compute_patient_bmi_safe
+    |     result = compute_patient_bmi(s)
+    |   File "/root/repo/Lab 7/processor.py", line 10, in compute_patient_bmi
+    |     w_str, h_str = bmi_string.split('/')
+    |                    ^^^^^^^^^^^^^^^^
+    | AttributeError: 'NoneType' object has no attribute 'split'
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "/root/repo/Lab 7/test_processor.py", line 26, in test_compute_patient_bmi_safe
+    |     pytest.fail(f"compute_patient_bmi crashed on {s!r}: {type(e).__name__}: {e}")
+    |     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/lib/python3.13/site-packages/_pytest/outcomes.py", line 162, in __call__
+    |     raise Failed(msg=reason, pytrace=pytrace)
+    | Failed: compute_patient_bmi crashed on None: AttributeError: 'NoneType' object has no attribute 'split'
+    | Failing test case: test_compute_patient_bmi_safe(
+    |     s=None,
+    | )
+    +------------------------------------
+__________________________ test_assign_ward_bed_safe ___________________________
+  + Exception Group Traceback (most recent call last):
+  |   File "/root/repo/Lab 7/test_processor.py", line 31, in test_assign_ward_bed_safe
+  |     @given(st.text() | st.none())
+  |                    ^^^
+  |   File "/usr/local/lib/python3.13/site-packages/hypothesis/core.py", line 2334, in wrapped_test
+  |     raise the_error_hypothesis_found
+  | BaseExceptionGroup: Hypothesis found 3 distinct failures. (3 sub-exceptions)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/root/repo/Lab 7/test_processor.py", line 34, in test_assign_ward_bed_safe
+    |     result = assign_ward_bed(s)
+    |   File "/root/repo/Lab 7/processor.py", line 24, in assign_ward_bed
+    |     bed_num = int(bed_str)
+    | ValueError: invalid literal for int() with base 10: ''
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "/root/repo/Lab 7/test_processor.py", line 36, in test_assign_ward_bed_safe
+    |     pytest.fail(f"assign_ward_bed crashed on {s!r}: {type(e).__name__}: {e}")
+    |     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/lib/python3.13/site-packages/_pytest/outcomes.py", line 162, in __call__
+    |     raise Failed(msg=reason, pytrace=pytrace)
+    | Failed: assign_ward_bed crashed on '-': ValueError: invalid literal for int() with base 10: ''
+    | Failing test case: test_assign_ward_bed_safe(
+    |     s='-',
+    | )
+    +---------------- 2 ----------------
+    | Traceback (most recent call last):
+    |   File "/root/repo/Lab 7/test_processor.py", line 34, in test_assign_ward_bed_safe
+    |     result = assign_ward_bed(s)
+    |   File "/root/repo/Lab 7/processor.py", line 17, in assign_ward_bed
+    |     ward, bed_str = allocation_code.strip().split('-')
+    |     ^^^^^^^^^^^^^
+    | ValueError: not enough values to unpack (expected 2, got 1)
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "/root/repo/Lab 7/test_processor.py", line 36, in test_assign_ward_bed_safe
+    |     pytest.fail(f"assign_ward_bed crashed on {s!r}: {type(e).__name__}: {e}")
+    |     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/lib/python3.13/site-packages/_pytest/outcomes.py", line 162, in __call__
+    |     raise Failed(msg=reason, pytrace=pytrace)
+    | Failed: assign_ward_bed crashed on '': ValueError: not enough values to unpack (expected 2, got 1)
+    | Failing test case: test_assign_ward_bed_safe(
+    |     s='',
+    | )
+    +---------------- 3 ----------------
+    | Traceback (most recent call last):
+    |   File "/root/repo/Lab 7/test_processor.py", line 34, in test_assign_ward_bed_safe
+    |     result = assign_ward_bed(s)
+    |   File "/root/repo/Lab 7/processor.py", line 17, in assign_ward_bed
+    |     ward, bed_str = allocation_code.strip().split('-')
+    |                     ^^^^^^^^^^^^^^^^^^^^^
+    | AttributeError: 'NoneType' object has no attribute 'strip'
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "/root/repo/Lab 7/test_processor.py", line 36, in test_assign_ward_bed_safe
+    |     pytest.fail(f"assign_ward_bed crashed on {s!r}: {type(e).__name__}: {e}")
+    |     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/lib/python3.13/site-packages/_pytest/outcomes.py", line 162, in __call__
+    |     raise Failed(msg=reason, pytrace=pytrace)
+    | Failed: assign_ward_bed crashed on None: AttributeError: 'NoneType' object has no attribute 'strip'
+    | Failing test case: test_assign_ward_bed_safe(
+    |     s=None,
+    | )
+    +------------------------------------
+=========================== short test summary info ============================
+FAILED test_processor.py::test_parse_vitals_summary_no_crash - BaseExceptionG...
+FAILED test_processor.py::test_compute_patient_bmi_safe - BaseExceptionGroup:...
+FAILED test_processor.py::test_assign_ward_bed_safe - BaseExceptionGroup: Hyp...
+============================== 3 failed in 0.22s ===============================
